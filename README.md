@@ -35,3 +35,6 @@
 | *Cellulomonas composti* | Да | ASM799024v1 | GCF_007990245.1 | GCA_007990245.1 | GenBank | Contig | 96.73% | 0.68% | 234.3 kb | [Ссылка](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_007990245.1/) |
 | *Cellulomonas fulva* | Да | ASM1853137v1 | GCF_018531375.1 | GCA_018531375.1 | GenBank | Scaffold | 98.85% | 2.55% | 3.1 Mb | [Ссылка](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_018531375.1/) |
 | *Cellulomonas hominis* | Да | ASM1891780v1 | GCF_018917805.1 | GCA_018917805.1 | GenBank | Contig | 96.92% | 4.47% | 420.7 kb | [Ссылка](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_018917805.1/) |
+
+
+Cellulomonas gilvus - использовался в качестве референса для сборки псевдохромосом
