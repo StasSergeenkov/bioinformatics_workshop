@@ -5,9 +5,9 @@
 + docker
 + FastQC - отчет о качестве данных
 + SPAdes - для сборки из сырых прочтений
-+ RagTag - для сборки псевдохромосом
-+ QUAST - для сравнения сборок: определения метрик (N50, количество контигов) и определения количества ошибок (misassemblies).
-+ CheckM - для оценки биологической полноты и чистоты сборки
++ RagTag - для сборки псевдохромосом (в окружении base)
++ QUAST - для сравнения сборок: определения метрик (N50, количество контигов) и определения количества ошибок (misassemblies). (в окружении base)
++ CheckM - для оценки биологической полноты и чистоты сборки (в окружении checkm)
 
 + базовый метапакет языка программирования R
 
@@ -47,14 +47,31 @@
 Cellulomonas gilvus - использовался в качестве референса для сборки псевдохромосом
 
 
-### Очистка данных (контигов) перед сборкой в скафоолды
-Использован инструмент sendsketch.sh из пакета BBTools по команде:
+### Сборка скаффолдов
+Для коррекции
 ```
-sendsketch.sh in=input.fasta out=results_sendsketch/taxonomy.txt
+ragtag correct reference.fasta contigs.fasta -o corrected
 ```
-Затем, на основе полученного списка сформирован список контигов не принадлежащих анализируемому виду:
+Затем, на основе полученных данных произведена сборка скаффолдов:
 ```
-awk -F'\t' '$2 != 233583 {print $1}' results_sendsketch/taxonomy.txt > contaminants.txt
+ragtag scaffold reference.fasta corrected/ragtag.correct.fasta -o scaffolded
+```
+
+Последующая оценка качества полученных данных включала в себя:
+```
+quast.py Cellulomonas_xylanilytica.fasta scaffolded/ragtag.scaffold.fasta \
+    -r reference_gilvus.fasta \
+    -o quast_comparison \
+    --gene-finding
+```
+Для проверки CheckM:
+```
+#Предварительно необходимо создать каталог bins и перенести туда сборку:
+mkdir -p bins
+cp scaffolded/ragtag.scaffold.fasta bins/
+
+#а затем запускать анализ
+checkm taxonomy_wf -x fasta -t 8 -f results.txt genus Cellulomonas bins/ output_checkm/
 ```
 
 ### Сборка псевдохромосом из скаффолдов
