@@ -73,6 +73,14 @@ cp scaffolded/ragtag.scaffold.fasta bins/
 #а затем запускать анализ
 checkm taxonomy_wf -x fasta -t 8 -f results.txt genus Cellulomonas bins/ output_checkm/
 ```
+Дополнительно подготовим графики:
+```
+#GC plot
+checkm gc_plot -x fasta --image_type pdf bins/ gc_plots/ 100
+
+#Coding plot
+checkm coding_plot -x fasta --image_type pdf output_checkm/ bins/ coding_plots/ 100
+```
 
 ### Сборка псевдохромосом из скаффолдов
 в RagTag команда:
