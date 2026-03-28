@@ -99,7 +99,7 @@ busco -i /mnt/hgfs/SFTP/assembling/Cellulomonas_xylanilytica/Cellulomonas_xylani
 
 
 **Массовое выполнение (run_busco_all.sh)**
-```
+```bash
 #!/bin/bash
 set -e  # остановка при любой ошибке
 
