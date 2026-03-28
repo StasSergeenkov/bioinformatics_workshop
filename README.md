@@ -97,7 +97,7 @@ busco -i /mnt/hgfs/SFTP/assembling/Cellulomonas_xylanilytica/Cellulomonas_xylani
 ```
 
 
-**Массовое выполнение**
+**Массовое выполнение (run_busco_all.sh)**
 ```
 #!/bin/bash
 set -e  # остановка при любой ошибке
@@ -164,21 +164,18 @@ done
 
 echo "Все операции выполнены."
 ```
-
-
-Полный скрипт для проверки всех данных:
+**Парсинг данных (parse_busco_summary.sh)**
 ```
 #!/bin/bash
-set -e  # остановка при любой ошибке
 
-BASE_DATA="/mnt/hgfs/SFTP/working_data"
-BUSCO_TMP="/home/stas/busco_results"
+BASE="/mnt/hgfs/SFTP/working_data"
+OUTPUT="$BASE/busco_analysis_summary.txt"
 
-# Список штаммов (все, кроме fimi)
 STRAINS=(
     Cellulomonas_algicola
     Cellulomonas_cellasea
     Cellulomonas_composti
+    Cellulomonas_fimi
     Cellulomonas_flavigena
     Cellulomonas_fulva
     Cellulomonas_gilvus
@@ -195,43 +192,50 @@ STRAINS=(
     Cellulomonas_xylanilytica
 )
 
-for strain in "${STRAINS[@]}"; do
-    echo "=========================================="
-    echo "Обработка: $strain"
-    echo "=========================================="
+# Заголовок
+echo "| Species | C (%) | S (%) | D (%) | F (%) | M (%) | n |" > "$OUTPUT"
+echo "|---------|-------|-------|-------|-------|-------|---|" >> "$OUTPUT"
 
-    INPUT_FASTA="$BASE_DATA/$strain/$strain.fasta"
-    if [ ! -f "$INPUT_FASTA" ]; then
-        echo "Ошибка: файл $INPUT_FASTA не найден! Пропускаем."
+for strain in "${STRAINS[@]}"; do
+    suffix="${strain##*_}"
+    summary_file="$BASE/$strain/busco_results/busco_result_$suffix/short_summary.specific.bacteria_odb12.busco_result_$suffix.txt"
+
+    if [ ! -f "$summary_file" ]; then
+        echo "Предупреждение: файл не найден: $summary_file" >&2
+        echo "| $strain | - | - | - | - | - | - |" >> "$OUTPUT"
         continue
     fi
 
-    # Подготовка временной папки
-    rm -rf "$BUSCO_TMP"
-    mkdir -p "$BUSCO_TMP"
+    # Ищем строку, содержащую "C:" (например, C:98.3%[S:98.3%,D:0.0%],F:0.9%,M:0.9%,n:116)
+    line=$(grep -m1 "C:" "$summary_file")
+    if [ -z "$line" ]; then
+        echo "Предупреждение: не найдена строка с результатами в файле: $summary_file" >&2
+        echo "| $strain | - | - | - | - | - | - |" >> "$OUTPUT"
+        continue
+    fi
 
-    # Запуск BUSCO
-    busco -i "$INPUT_FASTA" \
-          -o "busco_result_${strain##*_}" \
-          -m genome \
-          -l /home/stas/busco_data/busco_downloads/lineages/bacteria_odb12 \
-          --out_path "$BUSCO_TMP" \
-          -c 4 \
-          -f \
-          --offline
+    # Парсим значения с помощью sed (учитываем, что проценты могут быть без дробной части)
+    C_val=$(echo "$line" | sed -n 's/.*C:\([0-9.]*\)%.*/\1/p')
+    S_val=$(echo "$line" | sed -n 's/.*S:\([0-9.]*\)%.*/\1/p')
+    D_val=$(echo "$line" | sed -n 's/.*D:\([0-9.]*\)%.*/\1/p')
+    F_val=$(echo "$line" | sed -n 's/.*F:\([0-9.]*\)%.*/\1/p')
+    M_val=$(echo "$line" | sed -n 's/.*M:\([0-9.]*\)%.*/\1/p')
+    n_val=$(echo "$line" | sed -n 's/.*n:\([0-9]*\).*/\1/p')
 
-    # Копирование результатов в исходный каталог
-    cp -r "$BUSCO_TMP" "$BASE_DATA/$strain/"
+    # Если какие-то значения не извлеклись, ставим прочерк
+    [ -z "$C_val" ] && C_val="-"
+    [ -z "$S_val" ] && S_val="-"
+    [ -z "$D_val" ] && D_val="-"
+    [ -z "$F_val" ] && F_val="-"
+    [ -z "$M_val" ] && M_val="-"
+    [ -z "$n_val" ] && n_val="-"
 
-    # Удаление временной папки
-    rm -rf "$BUSCO_TMP"
-
-    echo "$strain завершён"
-    echo
+    echo "| $strain | $C_val | $S_val | $D_val | $F_val | $M_val | $n_val |" >> "$OUTPUT"
 done
 
-echo "Все операции выполнены."
+echo "Готово. Результат сохранён в $OUTPUT"
 ```
+
 
 ### Сборка псевдохромосом из скаффолдов
 в RagTag команда:
