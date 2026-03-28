@@ -96,6 +96,74 @@ busco -i /mnt/hgfs/SFTP/assembling/Cellulomonas_xylanilytica/Cellulomonas_xylani
       --offline
 ```
 
+
+Полный скрипт для проверки всех данных:
+```
+#!/bin/bash
+set -e  # остановка при любой ошибке
+
+BASE_DATA="/mnt/hgfs/SFTP/working_data"
+BUSCO_TMP="/home/stas/busco_results"
+
+# Список штаммов (все, кроме fimi)
+STRAINS=(
+    Cellulomonas_algicola
+    Cellulomonas_cellasea
+    Cellulomonas_composti
+    Cellulomonas_flavigena
+    Cellulomonas_fulva
+    Cellulomonas_gilvus
+    Cellulomonas_hominis
+    Cellulomonas_iranensis
+    Cellulomonas_pakistanensis
+    Cellulomonas_palmilytica
+    Cellulomonas_soli
+    Cellulomonas_terrae
+    Cellulomonas_uda
+    Cellulomonas_wangleii
+    Cellulomonas_wangsupingiae
+    Cellulomonas_xiejunii
+    Cellulomonas_xylanilytica
+)
+
+for strain in "${STRAINS[@]}"; do
+    echo "=========================================="
+    echo "Обработка: $strain"
+    echo "=========================================="
+
+    INPUT_FASTA="$BASE_DATA/$strain/$strain.fasta"
+    if [ ! -f "$INPUT_FASTA" ]; then
+        echo "Ошибка: файл $INPUT_FASTA не найден! Пропускаем."
+        continue
+    fi
+
+    # Подготовка временной папки
+    rm -rf "$BUSCO_TMP"
+    mkdir -p "$BUSCO_TMP"
+
+    # Запуск BUSCO
+    busco -i "$INPUT_FASTA" \
+          -o "busco_result_${strain##*_}" \
+          -m genome \
+          -l /home/stas/busco_data/busco_downloads/lineages/bacteria_odb12 \
+          --out_path "$BUSCO_TMP" \
+          -c 4 \
+          -f \
+          --offline
+
+    # Копирование результатов в исходный каталог
+    cp -r "$BUSCO_TMP" "$BASE_DATA/$strain/"
+
+    # Удаление временной папки
+    rm -rf "$BUSCO_TMP"
+
+    echo "$strain завершён"
+    echo
+done
+
+echo "Все операции выполнены."
+```
+
 ### Сборка псевдохромосом из скаффолдов
 в RagTag команда:
 ```
