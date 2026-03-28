@@ -84,6 +84,18 @@ checkm gc_plot -x fasta --image_type pdf bins/ gc_plots/ 100
 checkm coding_plot -x fasta --image_type pdf output_checkm/ bins/ coding_plots/ 100
 ```
 
+Также через BUSCO:
+```
+busco -i /mnt/hgfs/SFTP/assembling/Cellulomonas_xylanilytica/Cellulomonas_xylanilytica.fasta \
+      -o busco_result_assembling \
+      -m genome \
+      -l /home/stas/busco_data/busco_downloads/lineages/bacteria_odb12 \
+      --out_path /home/stas/busco_results/two \
+      -c 8 \
+      -f \
+      --offline
+```
+
 ### Сборка псевдохромосом из скаффолдов
 в RagTag команда:
 ```
