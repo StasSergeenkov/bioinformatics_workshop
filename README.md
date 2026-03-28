@@ -84,7 +84,7 @@ checkm gc_plot -x fasta --image_type pdf bins/ gc_plots/ 100
 checkm coding_plot -x fasta --image_type pdf output_checkm/ bins/ coding_plots/ 100
 ```
 
-Также через BUSCO:
+Также через BUSCO (сохранение результатов в домашнюю директорию, так как он дурак):
 ```
 busco -i /mnt/hgfs/SFTP/assembling/Cellulomonas_xylanilytica/Cellulomonas_xylanilytica.fasta \
       -o busco_result_assembling \
