@@ -236,7 +236,15 @@ done
 
 echo "Готово. Результат сохранён в $OUTPUT"
 ```
-
+Аннотация Bakta:
+```
+bakta --db /home/stas/bakta_db/db \
+      --output /home/stas/annotation_results \
+      --prefix my_genome \
+      --threads 8 \
+      --verbose \
+      /path/to/your/genome.fasta
+```
 
 ### Сборка псевдохромосом из скаффолдов
 в RagTag команда:
