@@ -22,6 +22,7 @@
 + Prokka 1.14.5 (в окружении prokka145)
 + Prokka 1.15.6 (в окружении prokka156)
 + Barrnap 0.9 (в окружении barrnap)
++ seqkit (в окружении barrnap)
 
 
 ## Подготовка исходных данных
@@ -259,3 +260,108 @@ scaffolds.fasta — исходные скаффолды
 -u — добавляет суффикс к названиям последовательностей (полезно, чтобы не перепутать с исходными)
 -r — принуждает RagTag оценивать размеры гэпов (пробелов) между контигами на основе выравнивания на референс, а не просто вставлять стандартные 100 пар оснований
 
+### Построение дерева
+**укоренение**
+по геному Sanguibacter suarezii NBRC 16159
+[https://pmc.ncbi.nlm.nih.gov/articles/PMC1081325/figure/f1/]
+
+Процессы:
+1. Получение 16s
+   ```shell
+   mkdir -p barrnap_results && \
+barrnap --kingdom bac --threads 4 \
+    --outseq barrnap_results/rrna_sequences.fasta \
+    ваш_входной_файл.fna > barrnap_results/rrna_predictions.gff
+    ```
+
+**множественное выполнение run_barrnap.sh** (создание скрипта)
+```shell
+cat > /home/stas/run_barrnap.sh << 'EOF'
+#!/bin/bash
+# Скрипт для извлечения 16S рРНК из сборок Cellulomonas и Sanguibacter
+# Жёстко прописаны пути и список видов
+
+set -e  # остановка при ошибке
+
+# Корневая директория с данными
+ROOT="/mnt/hgfs/SFTP/2_working_data"
+
+# Список видов (имена подкаталогов)
+SPECIES=(
+    "Cellulomonas_algicola"
+    "Cellulomonas_cellasea"
+    "Cellulomonas_composti"
+    "Cellulomonas_fimi"
+    "Cellulomonas_flavigena"
+    "Cellulomonas_fulva"
+    "Cellulomonas_gilvus"
+    "Cellulomonas_hominis"
+    "Cellulomonas_iranensis"
+    "Cellulomonas_pakistanensis"
+    "Cellulomonas_palmilytica"
+    "Cellulomonas_soli"
+    "Cellulomonas_terrae"
+    "Cellulomonas_uda"
+    "Cellulomonas_wangleii"
+    "Cellulomonas_wangsupingiae"
+    "Cellulomonas_xiejunii"
+    "Cellulomonas_xylanilytica"
+    "Sanguibacter_suarezii"
+)
+
+# Проверка наличия seqkit (для фильтрации 16S)
+if ! command -v seqkit &> /dev/null; then
+    echo "Предупреждение: seqkit не найден. Файлы будут содержать все рРНК (5S,16S,23S)."
+    FILTER=false
+else
+    FILTER=true
+fi
+
+# Цикл по видам
+for sp in "${SPECIES[@]}"; do
+    echo "Обработка: $sp"
+    
+    # Пути
+    SP_DIR="${ROOT}/${sp}"
+    INPUT_FASTA="${SP_DIR}/${sp}.fasta"
+    OUT_DIR="${SP_DIR}/barrnap_results"
+    
+    # Проверка существования входного файла
+    if [ ! -f "$INPUT_FASTA" ]; then
+        echo "  Ошибка: файл $INPUT_FASTA не найден, пропускаем"
+        continue
+    fi
+    
+    # Создание выходной директории
+    mkdir -p "$OUT_DIR"
+    
+    # Временные файлы
+    TMP_ALL="${OUT_DIR}/${sp}_all_rrna.tmp"
+    OUT_FASTA="${OUT_DIR}/${sp}_16s.fasta"
+    OUT_GFF="${OUT_DIR}/${sp}.gff"
+    
+    # Запуск barrnap
+    barrnap --kingdom bac --threads 4 --outseq "$TMP_ALL" "$INPUT_FASTA" > "$OUT_GFF"
+    
+    # Фильтрация 16S, если seqkit доступен
+    if [ "$FILTER" = true ]; then
+        seqkit grep -r -p "16S ribosomal RNA" "$TMP_ALL" > "$OUT_FASTA"
+        # Удаляем временный файл
+        rm -f "$TMP_ALL"
+        echo "  Сохранено: $OUT_FASTA (только 16S)"
+    else
+        # Если seqkit нет, просто переименовываем
+        mv "$TMP_ALL" "$OUT_FASTA"
+        echo "  Сохранено: $OUT_FASTA (все рРНК)"
+    fi
+    
+    echo "  GFF: $OUT_GFF"
+    echo "--------------------------------"
+done
+
+echo "Готово."
+EOF
+
+chmod +x /home/stas/run_barrnap.sh
+```
+    
