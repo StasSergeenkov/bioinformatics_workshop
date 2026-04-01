@@ -276,10 +276,14 @@ barrnap --kingdom bac --threads 4 \
 
 **множественное выполнение run_barrnap.sh** (создание скрипта)
 ```shell
+# 1. Удалить старый скрипт (если есть)
+rm -f /home/stas/run_barrnap.sh
+
+# 2. Создать новый скрипт с исправленным содержимым
 cat > /home/stas/run_barrnap.sh << 'EOF'
 #!/bin/bash
 # Скрипт для извлечения 16S рРНК из сборок Cellulomonas и Sanguibacter
-# Жёстко прописаны пути и список видов
+# Исправлена фильтрация: поиск по "16S" без учёта регистра
 
 set -e  # остановка при ошибке
 
@@ -309,17 +313,15 @@ SPECIES=(
     "Sanguibacter_suarezii"
 )
 
-# Проверка наличия seqkit (для фильтрации 16S)
+# Проверка наличия seqkit
 if ! command -v seqkit &> /dev/null; then
-    echo "Предупреждение: seqkit не найден. Файлы будут содержать все рРНК (5S,16S,23S)."
-    FILTER=false
-else
-    FILTER=true
+    echo "ОШИБКА: seqkit не установлен. Установите: conda install -c bioconda seqkit"
+    exit 1
 fi
 
 # Цикл по видам
 for sp in "${SPECIES[@]}"; do
-    echo "Обработка: $sp"
+    echo "=== Обработка: $sp ==="
     
     # Пути
     SP_DIR="${ROOT}/${sp}"
@@ -328,40 +330,54 @@ for sp in "${SPECIES[@]}"; do
     
     # Проверка существования входного файла
     if [ ! -f "$INPUT_FASTA" ]; then
-        echo "  Ошибка: файл $INPUT_FASTA не найден, пропускаем"
+        echo "  Файл $INPUT_FASTA не найден, пропускаем"
         continue
     fi
     
     # Создание выходной директории
     mkdir -p "$OUT_DIR"
     
-    # Временные файлы
+    # Временные и выходные файлы
     TMP_ALL="${OUT_DIR}/${sp}_all_rrna.tmp"
     OUT_FASTA="${OUT_DIR}/${sp}_16s.fasta"
     OUT_GFF="${OUT_DIR}/${sp}.gff"
     
-    # Запуск barrnap
+    echo "  Запуск barrnap..."
     barrnap --kingdom bac --threads 4 --outseq "$TMP_ALL" "$INPUT_FASTA" > "$OUT_GFF"
     
-    # Фильтрация 16S, если seqkit доступен
-    if [ "$FILTER" = true ]; then
-        seqkit grep -r -p "16S ribosomal RNA" "$TMP_ALL" > "$OUT_FASTA"
-        # Удаляем временный файл
-        rm -f "$TMP_ALL"
-        echo "  Сохранено: $OUT_FASTA (только 16S)"
-    else
-        # Если seqkit нет, просто переименовываем
-        mv "$TMP_ALL" "$OUT_FASTA"
-        echo "  Сохранено: $OUT_FASTA (все рРНК)"
+    # Проверка, что временный файл создан и не пуст
+    if [ ! -s "$TMP_ALL" ]; then
+        echo "  ВНИМАНИЕ: временный FASTA-файл пуст. Проверьте barrnap."
+        continue
     fi
     
-    echo "  GFF: $OUT_GFF"
-    echo "--------------------------------"
+    echo "  Временный FASTA содержит $(grep -c '^>' "$TMP_ALL") последовательностей"
+    
+    # Фильтрация 16S (ищем "16S" в заголовке, регистронезависимо)
+    echo "  Фильтрация 16S..."
+    seqkit grep -r -i -p "16S" "$TMP_ALL" > "$OUT_FASTA"
+    
+    COUNT_16S=$(grep -c '^>' "$OUT_FASTA" 2>/dev/null || echo 0)
+    echo "  Найдено 16S последовательностей: $COUNT_16S"
+    
+    # Удаляем временный файл
+    rm -f "$TMP_ALL"
+    
+    if [ "$COUNT_16S" -eq 0 ]; then
+        echo "  ПРЕДУПРЕЖДЕНИЕ: не найдено ни одной 16S последовательности для $sp"
+    fi
+    
+    echo "  Результаты сохранены в $OUT_DIR"
+    echo "----------------------------------------"
 done
 
 echo "Готово."
 EOF
 
+# 3. Сделать скрипт исполняемым
 chmod +x /home/stas/run_barrnap.sh
+
+# 4. Запустить скрипт
+/home/stas/run_barrnap.sh
 ```
     
