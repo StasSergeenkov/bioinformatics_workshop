@@ -27,6 +27,8 @@
 + blast (в окружении esearch)
 + pandas (в окружении esearch)
 + python 3.14.3 (в окружении esearch)
++ matplotlib (в окружении esearch)
++ seaborn (в окружении esearch)
 
 
 ## Подготовка исходных данных
