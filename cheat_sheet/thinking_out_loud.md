@@ -23,12 +23,12 @@
 + Prokka 1.15.6 (в окружении prokka156)
 + Barrnap 0.9 (в окружении barrnap)
 + seqkit (в окружении barrnap)
-+ esearch 24.0 - это набор UNIX-команд для доступа к базам данных NCBI (в окружении esearch)
-+ blast (в окружении esearch)
-+ pandas (в окружении esearch)
-+ python 3.14.3 (в окружении esearch)
-+ matplotlib (в окружении esearch)
-+ seaborn (в окружении esearch)
++ esearch 24.0 - это набор UNIX-команд для доступа к базам данных NCBI (в окружении edirect)
++ blast (в окружении edirect)
++ pandas (в окружении edirect)
++ python 3.14.3 (в окружении edirect)
++ matplotlib (в окружении edirect)
++ seaborn (в окружении edirect)
 
 
 ## Подготовка исходных данных
