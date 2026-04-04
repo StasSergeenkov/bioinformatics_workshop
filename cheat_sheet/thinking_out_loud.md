@@ -384,6 +384,5 @@ chmod +x /home/stas/run_barrnap.sh
 2. Создание мульти-фаста
 3. Выравнивание (стандартные настройки MEGA, алгоритм MUSCLE)
 4. Подбор модели: лучшая модель: T92+G+I
-<img width="137" height="39" alt="image" src="https://github.com/user-attachments/assets/0db16e61-2690-438d-80bc-0f9fb5d740a2" />
 5. Построение дерева по модели
 
