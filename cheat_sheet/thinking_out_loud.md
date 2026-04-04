@@ -26,9 +26,10 @@
 + esearch 24.0 - это набор UNIX-команд для доступа к базам данных NCBI (в окружении edirect)
 + blast (в окружении edirect)
 + pandas (в окружении edirect)
-+ python 3.14.3 (в окружении edirect)
-+ matplotlib (в окружении edirect)
-+ seaborn (в окружении edirect)
++ python 3.14 (в окружении edirect)
++ python 3.10 (в окружении viz)
++ matplotlib (в окружении edirect и viz)
++ seaborn (в окружениях edirect и viz)
 
 
 ## Подготовка исходных данных
