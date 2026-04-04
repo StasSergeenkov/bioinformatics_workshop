@@ -24,6 +24,7 @@
 + Barrnap 0.9 (в окружении barrnap)
 + seqkit (в окружении barrnap)
 + esearch 24.0 - это набор UNIX-команд для доступа к базам данных NCBI (в окружении esearch)
++ blast (в окружении esearch)
 
 
 ## Подготовка исходных данных
