@@ -54,15 +54,22 @@ P.S. в скриптах и командах могут быть не самые
    
 **2. На уровне скаффолдов (scaffolds)**
    _Cellulomonas fulva_
+   
    _Cellulomonas uda_
    
 **3. На уровне полного генома (complete)**
    _Cellulomonas fimi_
+   
    _Cellulomonas flavigena_
+   
    _Cellulomonas gilvus_
+   
    _Cellulomonas palmilytica_
+   
    _Cellulomonas wangleii_
+   
    _Cellulomonas wangsupingiae_
+   
    _Cellulomonas xiejunii_
 
 ## Результаты
