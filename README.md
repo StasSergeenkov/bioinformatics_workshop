@@ -53,11 +53,13 @@ P.S. в скриптах и командах могут быть не самые
    _Cellulomonas xylanilytica_
    
 **2. На уровне скаффолдов (scaffolds)**
+  
    _Cellulomonas fulva_
    
    _Cellulomonas uda_
    
 **3. На уровне полного генома (complete)**
+   
    _Cellulomonas fimi_
    
    _Cellulomonas flavigena_
