@@ -33,14 +33,23 @@ P.S. в скриптах и командах могут быть не самые
 Получены следующие сборки:
 
 **1. На уровне контигов (contigs)**
+
    _Cellulomonas algicola_
+   
    _Cellulomonas cellasea_
+   
    _Cellulomonas composti_
+   
    _Cellulomonas hominis_
+   
    _Cellulomonas iranensis_
+   
    _Cellulomonas pakistanensis_
+   
    _Cellulomonas soli_
+   
    _Cellulomonas terrae_
+   
    _Cellulomonas xylanilytica_
    
 **2. На уровне скаффолдов (scaffolds)**
