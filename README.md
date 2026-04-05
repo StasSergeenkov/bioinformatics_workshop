@@ -1,4 +1,4 @@
-# предисловие
+# Предисловие
 ## Задумка
 
 Работа будет состоять из нескольких основных этапов:
@@ -28,8 +28,32 @@ P.S. в скриптах и командах могут быть не самые
 
 
 # Основная часть
-## Резюме
-
+## Подготовка исходных данных
+Данные для анализа получены из NCBI: использовалась большая часть референсных геномов, которые там представлены для рода _Cellulomonas_.
+Получены следующие сборки:
+**1. На уровне контигов (contigs)**
+   _Cellulomonas algicola_
+   _Cellulomonas cellasea_
+   _Cellulomonas composti_
+   _Cellulomonas hominis_
+   _Cellulomonas iranensis_
+   _Cellulomonas pakistanensis_
+   _Cellulomonas soli_
+   _Cellulomonas terrae_
+   _Cellulomonas xylanilytica_
+   
+**2. На уровне скаффолдов (scaffolds)**
+   _Cellulomonas fulva_
+   _Cellulomonas uda_
+   
+**3. На уровне полного генома (complete)**
+   _Cellulomonas fimi_
+   _Cellulomonas flavigena_
+   _Cellulomonas gilvus_
+   _Cellulomonas palmilytica_
+   _Cellulomonas wangleii_
+   _Cellulomonas wangsupingiae_
+   _Cellulomonas xiejunii_
 
 ## Результаты
 _и неменого биологических выводов_
