@@ -1,0 +1,4 @@
+##gff-version 3
+BJUB01000021.1	barrnap:0.9	rRNA	257	1776	0	+	.	Name=16S_rRNA;product=16S ribosomal RNA
+BJUB01000021.1	barrnap:0.9	rRNA	2228	5337	0	+	.	Name=23S_rRNA;product=23S ribosomal RNA
+BJUB01000021.1	barrnap:0.9	rRNA	5422	5531	7.2e-12	+	.	Name=5S_rRNA;product=5S ribosomal RNA
