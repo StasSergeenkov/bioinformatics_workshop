@@ -1,0 +1,4 @@
+##gff-version 3
+JAHKSJ010000044.1	barrnap:0.9	rRNA	53	162	7.4e-12	-	.	Name=5S_rRNA;product=5S ribosomal RNA
+JAHKSJ010000044.1	barrnap:0.9	rRNA	243	3341	0	-	.	Name=23S_rRNA;product=23S ribosomal RNA
+JAHKSJ010000044.1	barrnap:0.9	rRNA	3773	5290	0	-	.	Name=16S_rRNA;product=16S ribosomal RNA
