@@ -1,0 +1,29 @@
+# BUSCO version is: 6.0.0 
+# The lineage dataset is: bacteria_odb12 (Creation date: 2025-05-14, number of genomes: 3130, number of BUSCOs: 116)
+# Summarized benchmarking in BUSCO notation for file /mnt/hgfs/SFTP/working_data/Cellulomonas_flavigena/Cellulomonas_flavigena.fasta
+# BUSCO was run in mode: prok_genome_prod
+# Gene predictor used: prodigal
+
+	***** Results: *****
+
+	C:99.1%[S:97.4%,D:1.7%],F:0.9%,M:0.0%,n:116	   
+	115	Complete BUSCOs (C)			   
+	113	Complete and single-copy BUSCOs (S)	   
+	2	Complete and duplicated BUSCOs (D)	   
+	1	Fragmented BUSCOs (F)			   
+	0	Missing BUSCOs (M)			   
+	116	Total BUSCO groups searched		   
+
+Assembly Statistics:
+	1	Number of scaffolds
+	1	Number of contigs
+	4123179	Total length
+	0.000%	Percent gaps
+	4 Mbp	Scaffold N50
+	4 Mbp	Contigs N50
+
+
+Dependencies and versions:
+	hmmsearch: 3.4
+	bbtools: None
+	prodigal: 2.6.3

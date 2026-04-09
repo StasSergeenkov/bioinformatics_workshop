@@ -1,0 +1,4 @@
+##gff-version 3
+JAHBOH010000001.1	barrnap:0.9	rRNA	3063577	3063686	6.1e-12	-	.	Name=5S_rRNA;product=5S ribosomal RNA
+JAHBOH010000003.1	barrnap:0.9	rRNA	222	1651	0	+	.	Name=16S_rRNA;product=16S ribosomal RNA
+JAHBOH010000003.1	barrnap:0.9	rRNA	1909	5011	0	+	.	Name=23S_rRNA;product=23S ribosomal RNA
