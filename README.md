@@ -132,13 +132,13 @@ _совсем скоро тут появится резюме проекта, н
 > **ТУТ СЛЕДУЕТ ДОПИСАТЬ**
 
 Готовый файл выровнен с применением алгоритма MUSCLE на следующих параметрах:
-> Gap Open 400,00
-> Gap Extend 0,00
-> Max Memory in MB 24576
-> Max Iterations 16
-> Cluster Method (Iterations 1,2) UPGMA
-> Cluster Method (Other Iterations) UPGMA
-> Min Diag Length (Lambda) 24
+> Gap Open 400,00  
+> Gap Extend 0,00  
+> Max Memory in MB 24576  
+> Max Iterations 16  
+> Cluster Method (Iterations 1,2) UPGMA  
+> Cluster Method (Other Iterations) UPGMA  
+> Min Diag Length (Lambda) 24  
 
 Для построения дерева подобрана наилучшая модель:
 
