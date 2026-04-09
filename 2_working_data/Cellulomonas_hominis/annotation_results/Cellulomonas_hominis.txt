@@ -1,0 +1,30 @@
+Sequence(s):
+Length: 4117008
+Count: 14
+GC: 75.4
+N50: 420733
+N90: 303983
+N ratio: 0.0
+coding density: 91.8
+
+Annotation:
+tRNAs: 46
+tmRNAs: 1
+rRNAs: 3
+ncRNAs: 3
+ncRNA regions: 14
+CRISPR arrays: 3
+CDSs: 3762
+pseudogenes: 1
+hypotheticals: 182
+sORFs: 0
+gaps: 0
+oriCs: 0
+oriVs: 0
+oriTs: 0
+
+Bakta:
+Software: v1.12.0
+Database: v6.0, full
+DOI: 10.1099/mgen.0.000685
+URL: github.com/oschwengers/bakta
