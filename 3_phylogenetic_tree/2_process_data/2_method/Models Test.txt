@@ -1,0 +1,39 @@
+Table. Maximum Likelihood analysis of substitution models
+Model	Parameters	BIC	AICc	lnL	(+I)	(+G)	R	f(A)	f(T)	f(C)	f(G)	r(AT)	r(AC)	r(AG)	r(TA)	r(TC)	r(TG)	r(CA)	r(CT)	r(CG)	r(GA)	r(GT)	r(GC)
+T92+G+I	39	8120.306	7798.095	-3859.993	0.82	0.49	1.70	0.210	0.210	0.290	0.290	0.038	0.053	0.185	0.038	0.185	0.053	0.038	0.134	0.053	0.134	0.038	0.053
+HKY+G+I	41	8121.294	7782.565	-3850.222	0.82	0.48	1.82	0.232	0.188	0.245	0.335	0.034	0.044	0.215	0.041	0.158	0.060	0.041	0.121	0.060	0.149	0.034	0.044
+TN93+G+I	42	8123.259	7776.271	-3846.073	0.82	0.54	1.69	0.232	0.188	0.245	0.335	0.034	0.045	0.148	0.042	0.219	0.061	0.042	0.168	0.061	0.102	0.034	0.045
+GTR+G+I	45	8151.172	7779.408	-3844.632	0.83	0.55	1.69	0.232	0.188	0.245	0.335	0.038	0.038	0.146	0.047	0.219	0.078	0.036	0.168	0.049	0.101	0.044	0.036
+K2+G+I	38	8151.634	7837.682	-3880.789	0.82	0.49	1.69	0.250	0.250	0.250	0.250	0.046	0.046	0.157	0.046	0.157	0.046	0.046	0.157	0.046	0.157	0.046	0.046
+TN93+I	41	8164.376	7825.647	-3871.763	0.89	n/a	1.60	0.232	0.188	0.245	0.335	0.036	0.046	0.156	0.044	0.203	0.063	0.044	0.155	0.063	0.108	0.036	0.046
+T92+I	38	8164.397	7850.445	-3887.171	0.89	n/a	1.60	0.210	0.210	0.290	0.290	0.040	0.055	0.180	0.040	0.180	0.055	0.040	0.131	0.055	0.131	0.040	0.055
+HKY+I	40	8165.182	7834.712	-3877.299	0.90	n/a	1.70	0.232	0.188	0.245	0.335	0.035	0.046	0.210	0.043	0.154	0.062	0.043	0.118	0.062	0.145	0.035	0.046
+GTR+I	44	8193.045	7829.540	-3870.701	0.89	n/a	1.60	0.232	0.188	0.245	0.335	0.037	0.046	0.155	0.045	0.202	0.077	0.043	0.155	0.052	0.107	0.043	0.038
+K2+I	37	8196.779	7891.086	-3908.494	0.90	n/a	1.59	0.250	0.250	0.250	0.250	0.048	0.048	0.154	0.048	0.154	0.048	0.048	0.154	0.048	0.154	0.048	0.048
+JC+G+I	37	8235.236	7929.543	-3927.722	0.82	0.51	0.50	0.250	0.250	0.250	0.250	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083
+JC+I	36	8280.726	7983.293	-3955.600	0.89	n/a	0.50	0.250	0.250	0.250	0.250	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083
+TN93+G	41	8317.409	7978.679	-3948.280	n/a	0.05	1.61	0.232	0.188	0.245	0.335	0.035	0.046	0.138	0.043	0.222	0.063	0.043	0.171	0.063	0.095	0.035	0.046
+T92+G	38	8322.440	8008.488	-3966.192	n/a	0.05	1.62	0.210	0.210	0.290	0.290	0.039	0.054	0.181	0.039	0.181	0.054	0.039	0.131	0.054	0.131	0.039	0.054
+HKY+G	40	8325.182	7994.711	-3957.298	n/a	0.05	1.69	0.232	0.188	0.245	0.335	0.035	0.046	0.210	0.043	0.154	0.062	0.043	0.118	0.062	0.145	0.035	0.046
+GTR+G	44	8345.032	7981.527	-3946.695	n/a	0.05	1.60	0.232	0.188	0.245	0.335	0.039	0.045	0.137	0.048	0.221	0.077	0.042	0.169	0.048	0.095	0.043	0.035
+K2+G	37	8361.685	8055.992	-3990.947	n/a	0.05	1.61	0.250	0.250	0.250	0.250	0.048	0.048	0.154	0.048	0.154	0.048	0.048	0.154	0.048	0.154	0.048	0.048
+JC+G	36	8446.552	8149.119	-4038.513	n/a	0.05	0.50	0.250	0.250	0.250	0.250	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083
+TN93	40	8947.352	8616.882	-4268.384	n/a	n/a	1.42	0.232	0.188	0.245	0.335	0.038	0.049	0.127	0.047	0.217	0.067	0.047	0.167	0.067	0.088	0.038	0.049
+T92	37	8964.910	8659.217	-4292.560	n/a	n/a	1.43	0.210	0.210	0.290	0.290	0.043	0.059	0.173	0.043	0.173	0.059	0.043	0.125	0.059	0.125	0.043	0.059
+HKY	39	8971.456	8649.245	-4285.568	n/a	n/a	1.43	0.232	0.188	0.245	0.335	0.039	0.051	0.196	0.048	0.144	0.069	0.048	0.110	0.069	0.136	0.039	0.051
+GTR	43	8973.228	8617.981	-4265.925	n/a	n/a	1.42	0.232	0.188	0.245	0.335	0.040	0.046	0.126	0.050	0.216	0.087	0.043	0.166	0.052	0.087	0.049	0.038
+K2	36	9010.789	8713.356	-4320.631	n/a	n/a	1.43	0.250	0.250	0.250	0.250	0.052	0.052	0.147	0.052	0.147	0.052	0.052	0.147	0.052	0.147	0.052	0.052
+JC	35	9088.240	8799.066	-4364.489	n/a	n/a	0.50	0.250	0.250	0.250	0.250	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083	0.083
+NOTE.-- This table presents the goodness of fit for multiple substitution models, including their parameter estimates. The Bayesian Information Criterion (BIC) scores are used to select the optimal model. Each model’s Maximum Likelihood value (lnL), corrected Akaike Information Criterion (AICc) value, BIC, and the number of parameters are presented (refer to Chapter 8 in [1] for more information). Evolutionary rate variation among sites was modeled using a discrete Gamma distribution (+G) with 5 rate categories [2] and a fraction of sites were allowed to be evolutionarily invariant (+I). Estimates of gamma shape parameter and fraction of invariant sites are also shown, as appropriate. Assumed or estimated values of transition/transversion bias (R) are shown for each model, as well. They are followed by nucleotide frequencies (f) and rates of base substitutions (r) for each nucleotide pair. The sum of r estimates is set to 1 for each model making comparisons across models easier. The ML analyses were conducted using an automatically generated tree topology [3]. The analytical procedure encompassed 19 coding nucleotide sequences using 1st, 2nd, 3rd, and non-coding positions with 1 523 positions in the final dataset. Evolutionary analyses were conducted in MEGA12 [4] utilizing up to 16 parallel computing threads.
+
+Abbreviations: GTR: General Time Reversible; HKY: Hasegawa-Kishino-Yano; TN93: Tamura-Nei; T92: Tamura 3-parameter; K2: Kimura 2-parameter; JC: Jukes-Cantor.
+
+1. Nei M. and Kumar S. (2000). Molecular Evolution and Phylogenetics. Oxford University Press, New York.
+
+2. Yang Z. (1994) Maximum likelihood phylogenetic estimation from DNA sequences with variable rates over sites: Approximate methods.Journal of Molecular Evolution..39:306-314.
+
+3. Tamura K., Peterson D., Peterson N., Stecher G., Nei M., and Kumar S. (2011). MEGA5: Molecular Evolutionary Genetics Analysis using Maximum Likelihood, Evolutionary Distance, and Maximum Parsimony Methods. Molecular Biology and Evolution 28: 2731-2739.
+
+4. Kumar S., Stecher G., Suleski M., Sanderford M., Sharma S., and Tamura K. (2024). Molecular Evolutionary Genetics Analysis Version 12 for adaptive and green computing. Molecular Biology and Evolution 41:1-9.
+
+Disclaimer: While every effort has been made to ensure the accuracy of the caption, it is provided "as is" without warranty of any kind. Users are advised to thoroughly review the caption before its use for any purpose and report any errors or issues to the authors at www.megasoftware.net. The authors and their employers disclaim any liability for damages, including but not limited to special or consequential damages. Additionally, the authors expressly disclaim all other warranties, whether expressed or implied, including the suitability of the caption text for a specific purpose, use, or application.
