@@ -1,4 +1,0 @@
-##gff-version 3
-NZ_BCRT01000028.1	barrnap:0.9	rRNA	277	1798	0	+	.	Name=16S_rRNA;product=16S ribosomal RNA
-NZ_BCRT01000028.1	barrnap:0.9	rRNA	2222	5326	0	+	.	Name=23S_rRNA;product=23S ribosomal RNA
-NZ_BCRT01000028.1	barrnap:0.9	rRNA	5415	5525	1.3e-14	+	.	Name=5S_rRNA;product=5S ribosomal RNA
