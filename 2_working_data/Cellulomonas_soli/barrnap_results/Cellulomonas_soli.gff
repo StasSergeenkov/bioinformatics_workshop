@@ -1,0 +1,7 @@
+##gff-version 3
+JACBZJ010000001.1	barrnap:0.9	rRNA	2903979	2905500	0	+	.	Name=16S_rRNA;product=16S ribosomal RNA
+JACBZJ010000001.1	barrnap:0.9	rRNA	2905929	2909035	0	+	.	Name=23S_rRNA;product=23S ribosomal RNA
+JACBZJ010000001.1	barrnap:0.9	rRNA	2909116	2909225	6.9e-12	+	.	Name=5S_rRNA;product=5S ribosomal RNA
+JACBZJ010000001.1	barrnap:0.9	rRNA	4013034	4013143	6.9e-12	-	.	Name=5S_rRNA;product=5S ribosomal RNA
+JACBZJ010000001.1	barrnap:0.9	rRNA	4013224	4016330	0	-	.	Name=23S_rRNA;product=23S ribosomal RNA
+JACBZJ010000001.1	barrnap:0.9	rRNA	4016759	4018280	0	-	.	Name=16S_rRNA;product=16S ribosomal RNA
