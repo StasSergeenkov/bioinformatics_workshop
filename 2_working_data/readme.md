@@ -1,4 +1,23 @@
 # Технические пояснения к шагу
+## bakta
+
+Аннотация выполнена командой (в общем виде):
+```shell
+bakta --db /home/stas/bakta_db/db \
+      --output /home/stas/annotation_results \
+      --prefix my_genome \
+      --threads 8 \
+      --verbose \
+      /path/to/your/genome.fasta
+```
+Для массового выполнения во всех каталогах со всеми последовательностями использован bash-скрипт (создание и запуск скрипта):
+```shell
+
+```
+> [!CAUTION]
+> **ТУТ СЛЕДУЕТ ДОПИСАТЬ**
+
+
 
 ## barrnap
 
