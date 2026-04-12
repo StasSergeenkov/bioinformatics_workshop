@@ -276,10 +276,10 @@ scaffolds.fasta — исходные скаффолды
 1. Получение 16s
    ```shell
    mkdir -p barrnap_results && \
-barrnap --kingdom bac --threads 4 \
-    --outseq barrnap_results/rrna_sequences.fasta \
-    ваш_входной_файл.fna > barrnap_results/rrna_predictions.gff
-    ```
+   barrnap --kingdom bac --threads 4 \
+   --outseq barrnap_results/rrna_sequences.fasta \
+   входной_файл.fna > barrnap_results/rrna_predictions.gff
+   ```
 
 **множественное выполнение run_barrnap.sh** (создание скрипта)
 ```shell
