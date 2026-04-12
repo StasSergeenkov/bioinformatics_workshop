@@ -1,4 +1,149 @@
 # Технические пояснения к шагу
+## busco
+Проверка качества сборки выполнена следующей командой (частный пример): 
+```shell
+busco -i /mnt/hgfs/SFTP/assembling/Cellulomonas_xylanilytica/Cellulomonas_xylanilytica.fasta \
+      -o busco_result \
+      -m genome \
+      -l /home/stas/busco_data/busco_downloads/lineages/bacteria_odb12 \
+      --out_path /home/stas/busco_results/two \
+      -c 8 \
+      -f \
+      --offline
+```
+Для массового выполнения во всех каталогах со всеми последовательностями использован bash-скрипт:
+```shell
+#!/bin/bash
+set -e  # остановка при любой ошибке
+
+BASE_DATA="/mnt/hgfs/SFTP/working_data"
+BUSCO_TMP="/home/stas/busco_results"
+# мой сервер дурак и поэтому диркетория находится в корневой директории пользователя
+
+STRAINS=(
+    Cellulomonas_algicola
+    Cellulomonas_fimi
+    Cellulomonas_cellasea
+    Cellulomonas_composti
+    Cellulomonas_flavigena
+    Cellulomonas_fulva
+    Cellulomonas_gilvus
+    Cellulomonas_hominis
+    Cellulomonas_iranensis
+    Cellulomonas_pakistanensis
+    Cellulomonas_palmilytica
+    Cellulomonas_soli
+    Cellulomonas_terrae
+    Cellulomonas_uda
+    Cellulomonas_wangleii
+    Cellulomonas_wangsupingiae
+    Cellulomonas_xiejunii
+    Cellulomonas_xylanilytica
+)
+
+for strain in "${STRAINS[@]}"; do
+    echo "=========================================="
+    echo "Обработка: $strain"
+    echo "=========================================="
+
+    INPUT_FASTA="$BASE_DATA/$strain/$strain.fasta"
+    if [ ! -f "$INPUT_FASTA" ]; then
+        echo "Ошибка: файл $INPUT_FASTA не найден! Пропускаю..."
+        continue
+    fi
+
+    rm -rf "$BUSCO_TMP"
+    mkdir -p "$BUSCO_TMP"
+
+    busco -i "$INPUT_FASTA" \
+          -o "busco_result_${strain##*_}" \
+          -m genome \
+          -l /home/stas/busco_data/busco_downloads/lineages/bacteria_odb12 \
+          --out_path "$BUSCO_TMP" \
+          -c 4 \
+          -f \
+          --offline
+
+    cp -r "$BUSCO_TMP" "$BASE_DATA/$strain/"
+
+    rm -rf "$BUSCO_TMP"
+
+    echo "$strain завершён"
+    echo
+done
+
+echo "Все операции выполнены."
+```
+А затем, для удобства дальнейшего анализа, все данные были собраны в одну таблицу следующим скриптом:
+
+```shell
+#!/bin/bash
+
+BASE="/mnt/hgfs/SFTP/working_data"
+OUTPUT="$BASE/busco_analysis_summary.txt"
+
+STRAINS=(
+    Cellulomonas_algicola
+    Cellulomonas_cellasea
+    Cellulomonas_composti
+    Cellulomonas_fimi
+    Cellulomonas_flavigena
+    Cellulomonas_fulva
+    Cellulomonas_gilvus
+    Cellulomonas_hominis
+    Cellulomonas_iranensis
+    Cellulomonas_pakistanensis
+    Cellulomonas_palmilytica
+    Cellulomonas_soli
+    Cellulomonas_terrae
+    Cellulomonas_uda
+    Cellulomonas_wangleii
+    Cellulomonas_wangsupingiae
+    Cellulomonas_xiejunii
+    Cellulomonas_xylanilytica
+)
+
+echo "| Species | C (%) | S (%) | D (%) | F (%) | M (%) | n |" > "$OUTPUT"
+echo "|---------|-------|-------|-------|-------|-------|---|" >> "$OUTPUT"
+
+for strain in "${STRAINS[@]}"; do
+    suffix="${strain##*_}"
+    summary_file="$BASE/$strain/busco_results/busco_result_$suffix/short_summary.specific.bacteria_odb12.busco_result_$suffix.txt"
+
+    if [ ! -f "$summary_file" ]; then
+        echo "Предупреждение: файл не найден: $summary_file" >&2
+        echo "| $strain | - | - | - | - | - | - |" >> "$OUTPUT"
+        continue
+    fi
+
+    line=$(grep -m1 "C:" "$summary_file")
+    if [ -z "$line" ]; then
+        echo "Предупреждение: не найдена строка с результатами в файле: $summary_file" >&2
+        echo "| $strain | - | - | - | - | - | - |" >> "$OUTPUT"
+        continue
+    fi
+
+    C_val=$(echo "$line" | sed -n 's/.*C:\([0-9.]*\)%.*/\1/p')
+    S_val=$(echo "$line" | sed -n 's/.*S:\([0-9.]*\)%.*/\1/p')
+    D_val=$(echo "$line" | sed -n 's/.*D:\([0-9.]*\)%.*/\1/p')
+    F_val=$(echo "$line" | sed -n 's/.*F:\([0-9.]*\)%.*/\1/p')
+    M_val=$(echo "$line" | sed -n 's/.*M:\([0-9.]*\)%.*/\1/p')
+    n_val=$(echo "$line" | sed -n 's/.*n:\([0-9]*\).*/\1/p')
+
+    [ -z "$C_val" ] && C_val="-"
+    [ -z "$S_val" ] && S_val="-"
+    [ -z "$D_val" ] && D_val="-"
+    [ -z "$F_val" ] && F_val="-"
+    [ -z "$M_val" ] && M_val="-"
+    [ -z "$n_val" ] && n_val="-"
+
+    echo "| $strain | $C_val | $S_val | $D_val | $F_val | $M_val | $n_val |" >> "$OUTPUT"
+done
+
+echo "Готово. Результат сохранён в $OUTPUT"
+```
+
+
 ## bakta
 
 Аннотация выполнена командой (в общем виде):
