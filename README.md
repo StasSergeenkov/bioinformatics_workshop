@@ -150,14 +150,18 @@ _совсем скоро тут появится резюме проекта, н
 > [Поиск моделей - таблица с результатами](3_phylogenetic_tree/2_process_data/2_method)
 
 Параметры подбора модели:
-> Statistical Method Maximum Likelihood
-> Tree to Use Automatic (Neighbor-joining tree)
-> Approach Full (slow)
-> Substitutions Type Nucleotide
-> Gaps/Missing Data Partial deletion
-> Site Coverage Cutoff (%) 80
-> Select Codon Positions 1st, 2nd, 3rd, Noncoding Sites
+> Statistical Method Maximum Likelihood  
+> Tree to Use Automatic (Neighbor-joining tree)  
+> Approach Full (slow)  
+> Substitutions Type Nucleotide  
+> Gaps/Missing Data Partial deletion  
+> Site Coverage Cutoff (%) 80  
+> Select Codon Positions 1st, 2nd, 3rd, Noncoding Sites  
 > Branch Swap Filter Strong
+
+После подбора модели выполнено построение дерева на следующих параметрах:
+> Method: Maximum Likelihood Tree
+> Model
 
 
 
