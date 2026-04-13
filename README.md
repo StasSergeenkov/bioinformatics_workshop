@@ -130,7 +130,7 @@ _совсем скоро тут появится резюме проекта, н
 > [barrnap](2_working_data/readme.md#barrnap) - технические детали
 
 ## Общий анализ филогении: построение филогенетического дерева
-> [/3_phylogenetic_tree](3_phylogenetic_tree) - непосредственно подготовка исходных данных
+> [/3_phylogenetic_tree](3_phylogenetic_tree) - построение дерева
 
 Подготовка данных и филогенетический анализ выполнялись в MEGA 12.1.2 [5]. 
 Первым делом вручную (для выбора конкретных последовательностей из набора) был создан multifasta файл.
@@ -142,11 +142,26 @@ _совсем скоро тут появится резюме проекта, н
 > Max Iterations 16  
 > Cluster Method (Iterations 1,2) UPGMA  
 > Cluster Method (Other Iterations) UPGMA  
-> Min Diag Length (Lambda) 24  
+> Min Diag Length (Lambda) 24
+
+Тримминг концов не выполнялся.
 
 Для построения дерева подобрана наилучшая модель, выбранная на основе байесовского информационного критерия, который определён функцией "поиск моделей" (Find Best DNA/Protein Models) в MEGA для 24 вариантов: T92+G+I (модель Тамуры с Гамма распрелением и инвариантными сайтами).
-> [Поиск моделей](3_phylogenetic_tree/readme.md#подбор-модели) - технические детали
+> [Поиск моделей - таблица с результатами](3_phylogenetic_tree/2_process_data/2_method)
 
+Параметры подбора модели:
+> Statistical Method Maximum Likelihood
+> Tree to Use Automatic (Neighbor-joining tree)
+> Approach Full (slow)
+> Substitutions Type Nucleotide
+> Gaps/Missing Data Partial deletion
+> Site Coverage Cutoff (%) 80
+> Select Codon Positions 1st, 2nd, 3rd, Noncoding Sites
+> Branch Swap Filter Strong
+
+
+
+Параметр
 > [!CAUTION]
 > **ТУТ СЛЕДУЕТ ДОПИСАТЬ**
 
