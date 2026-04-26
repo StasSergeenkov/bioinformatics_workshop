@@ -174,7 +174,10 @@ _совсем скоро тут появится резюме проекта, н
 > ML Heuristic Method Nearest-Neighbor-Interchange (NNI)  
 > Initial Tree for ML Make initial tree automatically (Default - NJ/MP)  
 > Branch Swap Filter Strong  
-> Number of Threads 16  
+> Number of Threads 16
+
+> [Файл сессии](3_phylogenetic_tree/2_process_data/session.mtsx)
+> [Дерево изображением](3_phylogenetic_tree/mega_result)
 
 ### Метрики качества дерева
 
