@@ -1,4 +1,0 @@
-##gff-version 3
-BJLR01000047.1	barrnap:0.9	rRNA	298	1818	0	+	.	Name=16S_rRNA;product=16S ribosomal RNA
-BJLR01000047.1	barrnap:0.9	rRNA	2236	5342	0	+	.	Name=23S_rRNA;product=23S ribosomal RNA
-BJLR01000047.1	barrnap:0.9	rRNA	5429	5538	2.2e-12	+	.	Name=5S_rRNA;product=5S ribosomal RNA
