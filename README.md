@@ -159,22 +159,22 @@ _совсем скоро тут появится резюме проекта, н
 > Select Codon Positions 1st, 2nd, 3rd, Noncoding Sites  
 > Branch Swap Filter Strong
 
-После подбора модели выполнено построение дерева на следующих параметрах:
-> Method: Maximum Likelihood Tree
-> Statistical Method Maximum Likelihood
-> Test of Phylogeny Standard Bootstrap (slow)
-> Bootstrap Replicates 1000
-> Substitutions Type Nucleotide
-> Model/Method Tamura-Nei model
-> Rates among Sites Gamma Distributed With Invariant Sites (G+I)
-> No of Discrete Gamma Categories 5
-> Gaps/Missing Data Partial deletion
-> Site Coverage Cutoff (%) 80
-> Select Codon Positions 1st, 2nd, 3rd, Noncoding sites
-> ML Heuristic Method Nearest-Neighbor-Interchange (NNI)
-> Initial Tree for ML Make initial tree automatically (Default - NJ/MP)
-> Branch Swap Filter Strong
-> Number of Threads 16
+После подбора модели выполнено построение дерева на следующих параметрах:  
+> Method: Maximum Likelihood Tree  
+> Statistical Method Maximum Likelihood  
+> Test of Phylogeny Standard Bootstrap (slow)  
+> Bootstrap Replicates 1000  
+> Substitutions Type Nucleotide  
+> Model/Method Tamura-Nei model  
+> Rates among Sites Gamma Distributed With Invariant Sites (G+I)  
+> No of Discrete Gamma Categories 5  
+> Gaps/Missing Data Partial deletion  
+> Site Coverage Cutoff (%) 80  
+> Select Codon Positions 1st, 2nd, 3rd, Noncoding sites  
+> ML Heuristic Method Nearest-Neighbor-Interchange (NNI)  
+> Initial Tree for ML Make initial tree automatically (Default - NJ/MP)  
+> Branch Swap Filter Strong  
+> Number of Threads 16  
 
 ### Метрики качества дерева
 
