@@ -179,6 +179,46 @@ _совсем скоро тут появится резюме проекта, н
 > [!CAUTION]
 > **ТУТ СЛЕДУЕТ ДОПИСАТЬ**
 
+Вот подготовленные таблицы:
+
+---
+
+### Метрики качества
+
+| Метрика | Значение |
+|---------|----------|
+| Log-likelihood (LnL) | –3858.591 |
+| AICc | 7801.309 |
+| BIC | 8148.297 |
+| Суммарная длина ветвей (Sum of branch lengths) | 0.174 |
+| Доля инвариантных сайтов (Invar) | 0.8656 (86.56%) |
+| Параметр гамма-распределения (Gamma) | 0.6527 |
+| Соотношение транзиций/трансверсий (Ts/Tv) | 1.538 |
+| Модель замещений | Tamura-Nei 1993 (+G+I) |
+| Количество параметров | 42 |
+| Количество сайтов | 1515 |
+| Количество таксонов | 19 |
+
+## Bootstrap поддержки узлов (в долях)
+
+| Клада | Bootstrap |
+|--------------|-----------|
+| (Cellulomonas gilvus, Cellulomonas fulva) | 0.975 |
+| (Cellulomonas palmilytica, Cellulomonas uda) | 0.996 |
+| ((C. gilvus, C. fulva), (C. palmilytica, C. uda)) | 1.000 |
+| (Cellulomonas flavigena, Cellulomonas wangleii) | 0.956 |
+| (Cellulomonas iranesis, Cellulomonas xiejunii) | 0.942 |
+| ((C. flavigena, C. wangleii), (C. iranesis, C. xiejunii)) | 0.925 |
+| (C. wangsupingiae, предыдущий кластер) | 1.000 |
+| (Cellulomonas algicola, Cellulomonas fimi) | 0.979 |
+| (Cellulomonas cellasea, Sanguibacter suarezii) | 0.969 |
+| ((C. algicola, C. fimi), (C. cellasea, Sanguibacter)) | 0.904 |
+| Крупный внутренний узел (объединяющий C. wangsupingiae и др.) | 0.948 |
+| (Cellulomonas xylanilytica, (C. hominis, C. pakistanensis)) | 0.798 |
+| (Cellulomonas hominis, Cellulomonas pakistanensis) | 1.000 |
+| Cellulomonas soli (отдельная ветвь) | 0.833 |
+| Корневой узел (весь остаток дерева) | 0.845 |
+
 
 ## Результаты
 _и неменого биологических выводов_
