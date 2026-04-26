@@ -217,7 +217,50 @@ _совсем скоро тут появится резюме проекта, н
 | Корневой узел (весь остаток дерева) | 0.845 |
 
 ## Поиск и сравнительный поиск с гомологами генов целлюлаз
-### 
+### Поиск гомологов по референсным последовательностям (целевой BLAST-скрининг)
+> [/4_cellulases_analysis](4_cellulases_analysis) - построение дерева
+
+Для каждого вида нужно создать собственную BLAST-базу.
+Команда (выполнялась в папке с faa файлами):
+```shell
+for faa in *.faa; do
+    base=$(basename $faa .faa)
+    makeblastdb -in $faa -dbtype prot -out 0_blast/${base}
+done
+```
+Из статьи [6] были взяты три известных гена целлюлаз: AAW62376.2 (Гликозилгидролаза семейства 9 (GH9)), ABD96969.1 (Эндо-1,4-бета-ксиланаза (ксиланаза, частичная)), AAD48494.3 (Эндоглюканаза)
+
+Далее массово выполнен BLASTP с помощью bash скрипта.
+
+> [Скрипт run_blast_all.sh](4_cellulases_analysis/run_blast_all.sh)
+
+Для каждой BLAST-базы (0_blast/*.phr) запускал blastp с параметрами:
+> -evalue 1e-10
+> -outfmt 6
+> -num_threads 4
+
+Результаты всех видов объединял в один файл all_blast_raw.tsv, добавляя колонку с названием вида - это сырые хиты для всех пар запрос–геном.
+
+> [Результаты массового BLASTP all_blast_raw.tsv](4_cellulases_analysis/3_blast_results/all_blast_raw.tsv)
+
+Для выбора лучших хитов и построения матрицы присутствия подготовлен скрипт, выполняющий сортировку хитов по bitscore (более высокое значение - лучше), и выбор для каждой пары (qseqid, genome) одиного хита с наивысшим bitscore.
+
+> [Скрипт parse_blast_results.py](4_cellulases_analysis/parse_blast_results.py)
+
+> [Результаты фильтрации blast_best_hits.csv](4_cellulases_analysis/3_blast_results/blast_best_hits.csv)
+
+На основе этих данных построена матрица присутствия, в которой строки — виды, столбцы — три референсных белка, значение 1 — есть хит, 0 — нет; и сводка, отражающая сколько из трёх референсных белков найдено в каждом геноме _(возможно так будет проще обрабатывать, но это не точно)_.
+
+> [Матрица присутствия blast_presence_matrix.csv](4_cellulases_analysis/3_blast_results/blast_presence_matrix.csv)
+
+> [Сводка blast_summary_counts.csv](4_cellulases_analysis/3_blast_results/blast_summary_counts.csv)
+
+Визуализация данных проводилась скриптом, в следующие форматы: тепловая карта присутствия (просто визуализация blast_presence_matrix.csv), кластеризованная тепловая карта, столбчатая диаграмма числа найденных референсных белков (визуализация blast_summary_counts.csv), пузырьковая диаграмма для GH9 (визуализация blast_best_hits.csv для GH9), тепловая карта максимального процента идентичности (на основе blast_best_hits.csv, отражает максимальное значение pident).
+
+> [Вся визуализация расположена в каталоге](4_cellulases_analysis/3_blast_results)
+
+> [!CAUTION]
+> **ТУТ СЛЕДУЕТ ДОПИСАТЬ**
 
 ## Результаты
 _и неменого биологических выводов_
@@ -231,6 +274,8 @@ _и неменого биологических выводов_
 3. Schwengers O. Bakta database. Zenodo, 2025.
 4. Seemann T. tseemann/barrnap: Perl. 2026.
 5. Kumar S, Stecher G, Suleski M, Sanderford M, Sharma S, and Tamura K (2024) Molecular Evolutionary Genetics Analysis Version 12 for adaptive and green computing. Molecular Biology and Evolution 41:1-9.
+6. Sheik Asraf S. и др. Computational Analysis of the Putative Endoglucanases in the Genome of Cellulomonas flavigena ATCC 53703 // Proceedings of the Second Congress on Control, Robotics, and Mechatronics / под ред. Jha P. K. и др. Singapore: Springer Nature, 2024. С. 1–10.
+
 
 
 
