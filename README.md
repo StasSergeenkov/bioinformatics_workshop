@@ -220,6 +220,9 @@ _совсем скоро тут появится резюме проекта, н
 ## Результаты
 _и неменого биологических выводов_
 
+> [!CAUTION]
+> **ТУТ СЛЕДУЕТ ДОПИСАТЬ**
+
 ## Ссылки
 1. metashot/busco: Nextflow. metashot, 2026.
 2. Schwengers O. и др. Bakta: rapid & standardized annotation of bacterial genomes via alignment-free sequence identification: Python // Microbial Genomics. 2021.
@@ -231,3 +234,6 @@ _и неменого биологических выводов_
 
 ## Платформы
 _здесь будет указано основное железо и платформы (если сервис размещен онлайн)_
+
+> [!CAUTION]
+> **ТУТ СЛЕДУЕТ ДОПИСАТЬ**
